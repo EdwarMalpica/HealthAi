@@ -1,1 +1,60 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root
+{
+  --primary-color: #6FB6E5;
+  --secondary-color: #4C84AA;
+  --primary-gradient: linear-gradient(90deg, #427BA0 0%, #6FB6E5 100%);
+}
+
+app-home{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+
+}
+
+body
+{
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  width: 100vw;
+  color: var(--primary-color);
+
+}
+
+
+.primary-color
+{
+  color: var(--primary-color);
+}
+
+.secondary-color
+{
+  color: var(--secondary-color);
+}
+
+.white-color
+{
+  color: white;
+}
+.primary-bg
+{
+  background-color: var(--primary-color);
+}
+
+.primary-gradient
+{
+  background: var(--primary-gradient);
+}
+
