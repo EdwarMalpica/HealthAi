@@ -1,0 +1,29 @@
+.bg-gradient-blue{
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, #427ba0 100%);
+}
+.bg-img-form{
+  background-image: url("/form-image.png");
+  background-size: cover;
+  background-position: center;
+}
+
+input, select{
+  border: 1px solid rgba(66, 123, 160, 0.2);
+  border-radius: 20px;
+  padding: 5px 10px;
+  background-color: rgba(66, 123, 160, 0.05);
+
+}
+input::placeholder{
+  color: var(--secondary-color);
+}
+
+input:focus{
+  border: 1px solid var(--primary-color);
+}
+
+input:focus-visible, select:focus-visible{
+  border: 1px solid var(--primary-color);
+  outline: none;
+}
+
