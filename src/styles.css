@@ -8,6 +8,7 @@
 {
   --primary-color: #6FB6E5;
   --secondary-color: #4C84AA;
+  --third-color: #031432;
   --primary-gradient: linear-gradient(90deg, #427BA0 0%, #6FB6E5 100%);
 }
 
@@ -42,6 +43,10 @@ body
 .secondary-color
 {
   color: var(--secondary-color);
+}
+.third-color
+{
+  color: var(--third-color);
 }
 
 .white-color

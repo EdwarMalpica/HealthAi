@@ -1,31 +1,56 @@
-.bg_img{
-    width: 100%;
-    height: 100vh;
-    background-image: url('/home_image.png');
-    background-size: cover;
-    background-position: center;
+.bg_img {
+  width: 100%;
+  height: 100vh;
+  background-image: url("/home_image.png");
+  background-size: cover;
+  background-position: center;
 }
-.bg-gradient-blue{
-  background: linear-gradient(180deg, rgba(255,255,255,0) 0%, #427BA0 100%);
+.bg-gradient-blue {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #427ba0 100%);
 }
-.btn-principal{
+.btn-principal {
   background-color: white;
   border-radius: 81px;
   box-sizing: border-box;
 }
 
-.btn-principal span{
-  background: linear-gradient(90deg, #427BA0 0%, #6FB6E5 100%);
+.btn-principal span {
+  background: linear-gradient(90deg, #427ba0 0%, #6fb6e5 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.btn-principal:hover{
+.btn-principal:hover {
   transition: 0.5s all;
   border: 1px solid var(--primary-color);
   box-shadow: 0px 0px 10px 0px var(--primary-color);
 }
 
+.bg-gradient-blue-reverse {
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, #427ba0 100%);
+}
 
+.card {
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  transition: 0.5s all;
 
+}
+.card:hover {
+  transition: 0.5s all;
+  box-shadow: 0px 0px 10px 0px var(--primary-color);
+  cursor: pointer;
+}
+
+.bg-secondary-color {
+  background-color: var(--secondary-color);
+  border-radius: 29px;
+}
+.textGradient {
+  background: linear-gradient(90deg, #427ba0 0%, #6fb6e5 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
