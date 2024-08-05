@@ -2,10 +2,10 @@
   <div class="flex w-11/12 justify-between px-4 py-2 mt-10 items-center">
     <img src="logo.png" alt="logo">
     <ul class="flex gap-5 pr-5 secondary-color font-semibold">
-      <li><a routerLink="/home" [ngClass]="{'active': active['home']}" >Home</a></li>
-      <li><a routerLink="/health_tips" [ngClass]="{'active': active['health_tips']}" >Health tips</a></li>
-      <li><a routerLink="/about_us" [ngClass]="{'active': active['about_us']}">About us</a></li>
-      <li><a routerLink="/blog" [ngClass]="{'active': active['blog']}">Blog</a></li>
+      <li><a [ngClass]="{'active': active['home']}" (click)="setActive('home')" >Home</a></li>
+      <li><a [ngClass]="{'active': active['form']}"  (click)="setActive('form')">Book test</a></li>
+      <li><a [ngClass]="{'active': active['about_us']}" (click)="setActive('about_us')">About us</a></li>
+      <li><a [ngClass]="{'active': active['blog']}" (click)="setActive('blog')">Blog</a></li>
     </ul>
   </div>
 </div>

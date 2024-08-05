@@ -1,29 +1,63 @@
-.bg-gradient-blue{
+.bg-gradient-blue {
   background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, #427ba0 100%);
 }
-.bg-img-form{
+.bg-img-form {
   background-image: url("/form-image.png");
   background-size: cover;
   background-position: center;
+  max-height: 60vh;
 }
 
-input, select{
+input,
+select {
   border: 1px solid rgba(66, 123, 160, 0.2);
   border-radius: 20px;
   padding: 5px 10px;
   background-color: rgba(66, 123, 160, 0.05);
-
+  color: var(--secondary-color);
 }
-input::placeholder{
+input::placeholder {
   color: var(--secondary-color);
 }
 
-input:focus{
+input:focus {
   border: 1px solid var(--primary-color);
 }
 
-input:focus-visible, select:focus-visible{
+input:focus-visible,
+select:focus-visible {
   border: 1px solid var(--primary-color);
   outline: none;
 }
 
+:host ::ng-deep .p-inputtext {
+  border: 1px solid rgba(66, 123, 160, 0.2);
+  border-radius: 20px;
+  padding: 5px 10px;
+  background-color: rgba(66, 123, 160, 0.05);
+  color: var(--secondary-color);
+  font-size: small;
+}
+
+:host ::ng-deep .p-inputtext::placeholder {
+  color: var(--secondary-color);
+  font-size: small;
+}
+
+:host ::ng-deep .p-inputtext:focus {
+  border: 1px solid var(--primary-color);
+}
+
+:host ::ng-deep .p-selectbutton .p-highlight{
+  background: linear-gradient(90deg, #427ba0 0%, #6fb6e5 100%);
+}
+
+
+:host ::ng-deep .p-selectbutton .p-button-label{
+  color: var(--secondary-color) ;
+  font-size: small ;
+}
+
+:host ::ng-deep .p-selectbutton .p-highlight .p-button-label {
+  color: white ;
+}

@@ -1,0 +1,19 @@
+.bg-gradient-blue {
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, #427ba0 100%);
+}
+
+.knop-primary {
+  background-color: #6FB6E5;
+  color: white;
+}
+.knop-primary:hover {
+  background: linear-gradient(90deg, #6fb6e5 0%, #427ba0 100%);
+}
+
+.knop-secondary {
+  background-color: #427BA0;
+  color: white;
+}
+.knop-secondary:hover {
+  background: linear-gradient(90deg, #427ba0 0%, #6fb6e5 100%);
+}

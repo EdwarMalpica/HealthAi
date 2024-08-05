@@ -1,27 +1,335 @@
-<div class="bg-gradient-blue min-h-screen flex items-center justify-center pt-20">
-  <div class="w-9/12 bg-white p-10 flex gap-3 rounded-3xl">
-    <div class="w-6/12 flex flex-col">
+<div class="bg-gradient-blue min-h-screen flex items-center justify-center pt-40">
+  <div class="w-9/12 min-h-full bg-white p-10 py-32 flex gap-3 rounded-3xl">
+    <div class="w-6/12 flex flex-col ">
       <h2 class="text-2xl secondary-color font-semibold mb-4">Medical Check up</h2>
       <p class="secondary-color text-xs">Fill Out Our Form to Gain Valuable <br> Insights into Your Health</p>
-      <form action="" class="flex flex-col items-start w-full mt-4 text-xs gap-2">
-        <div class="flex w-full gap-2">
-          <input class="w-5/12" type="text" placeholder="First Name">
-          <input class="w-5/12" type="text" placeholder="Last Name">
-        </div>
-        <div class="w-10/12">
-          <input class="w-full" type="text" name="" id="" placeholder="Email">
-        </div>
-        <div class="w-10/12 secondary-color">
-          <select name="gender" id="" class="px-4 w-full" >
-            <option value="Gender" disabled selected>Gender</option>
-            <option value="">Male</option>
-            <option value="">Female</option>
-          </select>
-        </div>
-        <div class="w-10/12">
-          <input class="w-full" type="text" name="" id="" placeholder="Phone Number">
-        </div>
-      </form>
+      <div class="w-full h-full">
+        <p-stepper orientation="horizontal" [activeStep]="2">
+          <p-stepperPanel header="">
+            <ng-template pTemplate="content" let-nextCallback="nextCallback" let-index="index">
+              <div class="flex flex-column h-12rem">
+                <form [formGroup]="formPersonalData" action=""
+                  class="flex flex-col items-start w-full mt-4 text-xs gap-2">
+                  <h3 class="text-xl font-semibold color-gradient-primary">Personal data</h3>
+                  <p class="color-gradient-primary">
+                    Please fill out the following information to get started.
+                  </p>
+                  <div class="flex w-full gap-2">
+                    <input class="w-5/12" type="text" placeholder="First Name" formControlName="name">
+                    <input class="w-5/12" type="text" placeholder="Last Name" formControlName="lastName">
+                  </div>
+                  <div class="w-10/12">
+                    <p-calendar [placeholder]="'birthDate'" [style]="styleCalendar" formControlName="birthDate" />
+                  </div>
+                  <div class="w-10/12 secondary-color">
+                    <select name="gender" id="" class="px-4 w-full" formControlName="gender">
+                      <option value="Gender" disabled selected>Gender</option>
+                      <option value="M">Male</option>
+                      <option value="F">Female</option>
+                    </select>
+                  </div>
+                  <div class="w-10/12">
+                  </div>
+                  <div class="flex items-center justify-center mt-4 w-full">
+                    <!-- <button class="flex items-center justify-center gap-2 text-xl rounded-3xl px-4 py-2">
+                      <img class="w-2/12" src="button-icon-white.png" alt="">
+                      Get&nbsp;results
+                    </button> -->
+                  </div>
+                </form>
+              </div>
+              <div class="flex py-4">
+                <p-button label="Next" [disabled]="!(isCompletedFormPersonalData |async)"
+                  (onClick)="nextCallback.emit()" />
+              </div>
+            </ng-template>
+          </p-stepperPanel>
+          <p-stepperPanel header="">
+            <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback"
+              let-index="index">
+              <div class="flex flex-column h-12rem">
+                <form action="" [formGroup]="formWeightAndHabits" class="flex flex-col w-full gap-3">
+                  <div class="flex flex-col items-start w-full mt-4 text-xs gap-2">
+                    <h3 class="text-xl font-semibold color-gradient-primary">Weight and Habits</h3>
+                    <p class="color-gradient-primary">
+                      Please tell us about your weight and habits.
+                    </p>
+                  </div>
+                  <div class="flex w-full gap-2 items-center">
+                    <input class="w-5/12" type="number" placeholder="Weight" formControlName="weight">
+                    <label for="" class="h-full flex items-center color-gradient-primary text-xs">
+                      Units
+                    </label>
+                    <!--Units-->
+                    <select name="weightUnit" id="" class="w-5/12 px-4" formControlName="unitsWeight">
+                      <option value="Kg">Kg</option>
+                      <option value="Lb">Lb</option>
+                    </select>
+                  </div>
+                  <div class="flex w-full gap-2">
+                    <input class="w-5/12" type="number" placeholder="Height" formControlName="height">
+                    <!--Units-->
+                    <label for="" class="h-full flex items-center color-gradient-primary text-xs">
+                      Units
+                    </label>
+                    <select name="heightUnit" id="" class="w-5/12 px-4" formControlName="unitsHeight">
+                      <option value="Cm">Cm</option>
+                      <option value="In">In</option>
+                    </select>
+                  </div>
+                  <div class="flex flex-col w-full gap-2">
+                    <label for="" class="color-gradient-primary text-xs">
+                      How many days a week do you exercise?
+                    </label>
+                    <p-selectButton [options]="optionsDaysOfExercise" optionLabel="name" optionValue="value" formControlName="daysOfExercise" />
+                  </div>
+                  <div class="flex flex-col w-7/12 gap-2">
+                    <label for="" class="color-gradient-primary text-xs">
+                      How many minutes do you exercise per session?
+                    </label>
+                    <input type="number" placeholder="Minutes" formControlName="minutesOfExercise">
+                  </div>
+                  <!--Sleep-->
+                  <div class="flex flex-col w-7/12 gap-2">
+                    <label for="" class="color-gradient-primary text-xs">
+                      How many hours of sleep do you get per night?
+                    </label>
+                    <input type="number" placeholder="Hours" max="24" maxlength="2" min="0" [max]="24" formControlName="hoursOfSleep">
+                  </div>
+                  <!--Frequency of issues with sleep-->
+                  <div class="flex flex-col w-7/12 gap-2">
+                    <label for="" class="color-gradient-primary text-xs">
+                      How often do you have trouble sleeping?
+                    </label>
+                    <p-selectButton [options]="optionsFrequencyOfIssuesWithSleep" optionLabel="name" formControlName="frequencyOfIssuesForSleep"
+                      optionValue="value" />
+                  </div>
+                  <!--Fruits-->
+                  <div class="flex flex-col w-7/12 gap-2">
+                    <label for="" class="color-gradient-primary text-xs">
+                      How many servings of fruits do you eat per day?
+                    </label>
+                    <input type="number" placeholder="Servings" formControlName="manyFruits">
+                  </div>
+                  <!--Vegetables-->
+                  <div class="flex flex-col w-7/12 gap-2">
+                    <label for="" class="color-gradient-primary text-xs">
+                      How many servings of vegetables do you eat per day?
+                    </label>
+                    <input type="number" placeholder="Servings" formControlName="manyVegetables">
+                  </div>
+                  <!--Smoke-->
+                  <div class="flex flex-col w-7/12 gap-2">
+                    <label for="" class="color-gradient-primary text-xs">
+                      Do you smoke?
+                    </label>
+                    <p-selectButton [options]="optionsSmoke" optionLabel="name" optionValue="value" formControlName="smoker"  />
+                  </div>
+                  <!--Alcohol-->
+                  <div class="flex flex-col w-7/12 gap-2">
+                    <label for="" class="color-gradient-primary text-xs">
+                      Do you drink alcohol?
+                    </label>
+                    <p-selectButton [options]="optionsAlcohol" optionLabel="name" optionValue="value" formControlName="drinker" />
+                  </div>
+                </form>
+              </div>
+              <div class="flex py-4 gap-2">
+                <p-button label="Back" severity="secondary" (onClick)="prevCallback.emit()" />
+                <p-button label="Next" [disabled]="!(isCompletedFormWeightAndHabits|async)" (onClick)="nextCallback.emit()" />
+              </div>
+            </ng-template>
+          </p-stepperPanel>
+          <p-stepperPanel header="">
+            <ng-template pTemplate="content" let-prevCallback="prevCallback" let-index="index">
+              <div class="flex flex-column h-12rem">
+                <form
+                  [formGroup]="formRiskOfHospitalization"
+                  action=""
+                  class="flex flex-col items-start w-full mt-4 text-xs gap-2"
+                >
+                  <h3 class="text-xl font-semibold color-gradient-primary">Medical history</h3>
+                  <p class="color-gradient-primary">
+                    Please tell us about your medical history.
+                  </p>
+                   <!--Do you currently have private health insurance? (Yes/No)-->
+                  <div class="flex flex-col w-7/12 gap-2">
+                    <label for="" class="color-gradient-primary text-xs">
+                      Do you currently have private health insurance?
+                    </label>
+                    <p-selectButton [options]="optionsPrivateHealthInsurance" optionLabel="name" optionValue="value" formControlName="privateHealthInsurance" />
+                  </div>
+                  <!--What were your out-of-pocket medical expenses in the past year? int-->
+                  <div class="flex flex-col w-7/12 gap-2">
+                    <label for="" class="color-gradient-primary text-xs">
+                      What were your out-of-pocket medical expenses in the past year?
+                    </label>
+                    <input type="number" placeholder="Expenses" formControlName="outOfPocketMedicalExpenses">
+                  </div>
+                  <!--Have you visited the doctor in the past year?(Yes/No)-->
+                  <div class="flex flex-col w-7/12 gap-2">
+                    <label for="" class="color-gradient-primary text-xs">
+                      Have you visited the doctor in the past year?
+                    </label>
+                    <p-selectButton [options]="optionsVisitedTheDoctorInLastYear" optionLabel="name" optionValue="value" formControlName="visitedTheDoctorInLastYear" />
+                  </div>
+                  <!--How often do you wake up during the night? (Rarely/Never, Sometimes, Often, Always)-->
+                  <div class="flex flex-col w-7/12 gap-2">
+                    <label for="" class="color-gradient-primary text-xs">
+                      How often do you wake up during the night?
+                    </label>
+                    <p-selectButton [options]="optionsWakeUpDuringTheNight" optionLabel="name" optionValue="value" formControlName="OftenWakeUpDuringTheNight" />
+                  </div>
+                  <!--How many children have you ever given birth to or fathered?-->
+                  <div class="flex flex-col w-7/12 gap-2">
+                    <label for="" class="color-gradient-primary text-xs">
+                      How many children have you ever given birth to or fathered?
+                    </label>
+                    <input type="number" placeholder="Children" formControlName="howManyChildren">
+                  </div>
+                  <!--Have you ever experienced a stroke? (Yes/No)-->
+                  <div class="flex flex-col w-7/12 gap-2">
+                    <label for="" class="color-gradient-primary text-xs">
+                      Have you ever experienced a stroke?
+                    </label>
+                    <p-selectButton [options]="optionsStroke" optionLabel="name" optionValue="value" formControlName="everExperiencedStroke" />
+                  </div>
+                  <!--How many of your siblings have passed away?-->
+                  <div class="flex flex-col w-7/12 gap-2">
+                    <label for="" class="color-gradient-primary text-xs">
+                      How many of your siblings have passed away?
+                    </label>
+                    <input type="number" placeholder="Siblings" formControlName="siblingsHavePassedAway">
+                  </div>
+                  <!--What is your annual income from public retirement and widowhood pensions?-->
+                  <div class="flex flex-col w-7/12 gap-2">
+                    <label for="" class="color-gradient-primary text-xs">
+                      What is your annual income from public retirement and widowhood pensions?
+                    </label>
+                    <input type="number" placeholder="Income" formControlName="annualIncomeFromPublicRetirement">
+                  </div>
+                  <!--What is your annual income from other pensions from public providers?-->
+                  <div class="flex flex-col w-7/12 gap-2">
+                    <label for="" class="color-gradient-primary text-xs">
+                      What is your annual income from other pensions from public providers?
+                    </label>
+                    <input type="number" placeholder="Income" formControlName="annualIncomeFromPrivateRetirement">
+                  </div>
+                  <!--howManySiblingAreAlive-->
+                  <div class="flex flex-col w-7/12 gap-2">
+                    <label for="" class="color-gradient-primary text-xs">
+                      How many of your siblings are currently living?
+                    </label>
+                    <input type="number" placeholder="Siblings" formControlName="howManySiblingAreAlive">
+                  </div>
+                  <!--Can you provide the total number of doctor visits you've had in the past year?-->
+                  <div class="flex flex-col w-7/12 gap-2">
+                    <label for="" class="color-gradient-primary text-xs">
+                      Can you provide the total number of doctor visits you've had in the past year?
+                    </label>
+                    <input type="number" placeholder="Visits" formControlName="numberOfDoctorsVisitedInLastYear">
+                  </div>
+                  <!--What is your total annual income from public pensions?-->
+                  <div class="flex flex-col w-7/12 gap-2">
+                    <label for="" class="color-gradient-primary text-xs">
+                      What is your total annual income from public pensions?
+                    </label>
+                    <input type="number" placeholder="Income" formControlName="annualIncomeFromPublicPension">
+                  </div>
+                  <!--During the past year, how often did you care for a sick or disabled adult? (Never, Rarely, Sometimes, Often)-->
+                  <div class="flex flex-col w-7/12 gap-2">
+                    <label for="" class="color-gradient-primary text-xs">
+                      During the past year, how often did you care for a sick or disabled adult?
+                    </label>
+                    <p-selectButton [options]="optionsCareForSickOrDisabledAdult" optionLabel="name" optionValue="value" formControlName="oftenCareSickDuringTheLastYear" />
+                  </div>
+                  <!--Do you engage in walking as a form of exercise? (Yes/No)-->
+                  <div class="flex flex-col w-7/12 gap-2">
+                    <label for="" class="color-gradient-primary text-xs">
+                      Do you engage in walking as a form of exercise?
+                    </label>
+                    <p-selectButton [options]="optionsWalking" optionLabel="name" optionValue="value" formControlName="youEngageInPhysicalActivity" />
+                  </div>
+                  <!--What is your annual income from private pensions?-->
+                  <div class="flex flex-col w-7/12 gap-2">
+                    <label for="" class="color-gradient-primary text-xs">
+                      What is your annual income from private pensions?
+                    </label>
+                    <input type="number" placeholder="Income" formControlName="annualIncomeFromPrivatePension">
+                  </div>
+                  <!--How many words can you recall from a memory test conducted earlier?-->
+                  <div class="flex flex-col w-7/12 gap-2">
+                    <label for="" class="color-gradient-primary text-xs">
+                      How many words can you recall from a memory test conducted earlier?
+                    </label>
+                    <input type="number" placeholder="Words" formControlName="howManyWordsCanYouRecall">
+                  </div>
+                  <!--Are you covered by any government health insurance program? (Yes/No)-->
+                  <div class="flex flex-col w-7/12 gap-2">
+                    <label for="" class="color-gradient-primary text-xs">
+                      Are you covered by any government health insurance program?
+                    </label>
+                    <p-selectButton [options]="optionsGovernmentHealthInsurance" optionLabel="name" optionValue="value" formControlName="coveredByGovernmentHealthInsurance" />
+                  </div>
+                  <!--What is your annual income from other pensions?-->
+                  <div class="flex flex-col w-7/12 gap-2">
+                    <label for="" class="color-gradient-primary text-xs">
+                      What is your annual income from other pensions?
+                    </label>
+                    <input type="number" placeholder="Income" formControlName="annualIncomeFromOthersPension">
+                  </div>
+                  <!--Do you often feel that everything is an effort? (Yes/No)-->
+                  <div class="flex flex-col w-7/12 gap-2">
+                    <label for="" class="color-gradient-primary text-xs">
+                      Do you often feel that everything is an effort?
+                    </label>
+                    <p-selectButton [options]="optionsFeelThatEverythingIsAnEffort" optionLabel="name" optionValue="value" formControlName="oftenFeelThatEverythingIsAnEffort" />
+                  </div>
+                  <!--Do you experience difficulty with at least one health condition or activity? (Yes/No)-->
+                  <div class="flex flex-col w-7/12 gap-2">
+                    <label for="" class="color-gradient-primary text-xs">
+                      Do you experience difficulty with at least one health condition or activity?
+                    </label>
+                    <p-selectButton [options]="optionsExperienceDifficulty" optionLabel="name" optionValue="value" formControlName="experienceDifficultiesWithAtLeasOneHealthProblem" />
+                  </div>
+                  <!--Are you currently considered part of the labor force? (Yes/No)-->
+                  <div class="flex flex-col w-7/12 gap-2">
+                    <label for="" class="color-gradient-primary text-xs">
+                      Are you currently considered part of the labor force?
+                    </label>
+                    <p-selectButton [options]="optionsLaborForce" optionLabel="name" optionValue="value" formControlName="currentlyConsideredPartOfTheLaborForce" />
+                  </div>
+                  <!--walkin, climbing stairs, geting up from a chair, stooping, kneeling, crouching,reaching or extending arms above shoulder level-->
+                  <div class="flex flex-col w-7/12 gap-2">
+                    <label for="" class="color-gradient-primary text-xs">
+                      How often do you have difficulty walking, climbing stairs, getting up from a chair, stooping, kneeling, crouching, reaching or extending your arms above shoulder level?
+                    </label>
+                    <p-selectButton [options]="optionsDifficultyWalking" optionLabel="name" optionValue="value" formControlName="walkingClimbingStairs" />
+                  </div>
+                  <!--Are you the policyholder?-->
+                  <div class="flex flex-col w-7/12 gap-2">
+                    <label for="" class="color-gradient-primary text-xs">
+                      Are you the policyholder?
+                    </label>
+                    <p-selectButton [options]="optionsPolicyholder" optionLabel="name" optionValue="value" formControlName="policyholder" />
+                  </div>
+                  <!--Have there been changes in the composition of your family group such as divorce/separation, death, or new spouse? (Yes/No)-->
+                  <div class="flex flex-col w-7/12 gap-2">
+                    <label for="" class="color-gradient-primary text-xs">
+                      Have there been changes in the composition of your family group such as divorce/separation, death, or new spouse?
+                    </label>
+                    <p-selectButton [options]="optionsChangesInFamilyGroup" optionLabel="name" optionValue="value" formControlName="changesInTheCompositionOfTheFamily" />
+                  </div>
+                </form>
+              </div>
+              <div class="flex py-4 gap-2">
+                <p-button label="Back" (onClick)="prevCallback.emit()" />
+                <p-button label="Get results" [disabled]="!(isCompletedFormRiskOfHospitalization|async)" />
+              </div>
+            </ng-template>
+          </p-stepperPanel>
+        </p-stepper>
+      </div>
     </div>
     <div class="bg-img-form w-6/12 rounded-3xl">
       <div class="bg-gradient-blue"></div>
