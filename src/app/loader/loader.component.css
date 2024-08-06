@@ -1,0 +1,192 @@
+.loader {
+  position: fixed;
+  z-index: 9999;
+  background: white;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.typing-animation {
+  font-size: 48px;
+  background: linear-gradient(90deg, #427ba0 0%, #6fb6e5 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.typing-animation::before {
+  content: "";
+  animation: text 5s step-end normal forwards;
+}
+@keyframes text {
+  0% {
+    content: "";
+  }
+
+  5% {
+    content: "H";
+  }
+
+  8% {
+    content: "He";
+  }
+
+  11% {
+    content: "Hea";
+  }
+
+  14% {
+    content: "Heal";
+  }
+
+  17% {
+    content: "Healt";
+  }
+
+  20% {
+    content: "Health";
+  }
+
+  23% {
+    content: "Health.";
+  }
+
+  26% {
+    content: "Health.A";
+  }
+
+  29% {
+    content: "Health.AI";
+  }
+
+  32% {
+    content: "Health.AI,";
+  }
+
+  35% {
+    content: "Health.AI, ";
+  }
+
+  38% {
+    content: "Health.AI, t";
+  }
+
+  41% {
+    content: "Health.AI, th";
+  }
+
+  44% {
+    content: "Health.AI, the";
+  }
+
+  47% {
+    content: "Health.AI, the ";
+  }
+
+  50% {
+    content: "Health.AI, the f";
+  }
+
+  53% {
+    content: "Health.AI, the fu";
+  }
+
+  56% {
+    content: "Health.AI, the fut";
+  }
+
+  59% {
+    content: "Health.AI, the futu";
+  }
+
+  62% {
+    content: "Health.AI, the futur";
+  }
+
+  65% {
+    content: "Health.AI, the future";
+  }
+
+  68% {
+    content: "Health.AI, the future ";
+  }
+
+  71% {
+    content: "Health.AI, the future o";
+  }
+
+  74% {
+    content: "Health.AI, the future of";
+  }
+
+  77% {
+    content: "Health.AI, the future of ";
+  }
+
+  80% {
+    content: "Health.AI, the future of y";
+  }
+
+  83% {
+    content: "Health.AI, the future of yo";
+  }
+
+  86% {
+    content: "Health.AI, the future of you";
+  }
+
+  89% {
+    content: "Health.AI, the future of your";
+  }
+
+  92% {
+    content: "Health.AI, the future of your ";
+  }
+
+  95% {
+    content: "Health.AI, the future of your h";
+  }
+
+  98% {
+    content: "Health.AI, the future of your he";
+  }
+
+  100% {
+    content: "Health.AI, the future of your health.";
+  }
+}
+
+.typing-animation::after {
+  content: "";
+  display: inline-block;
+  width: 0.1em;
+  height: 0.75em;
+  margin-left: 0.1em;
+  background-color: var(--primary-color);
+  animation: blink 0.75s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%,
+  25%,
+  100% {
+    opacity: 1;
+  }
+
+  50%,
+  75% {
+    opacity: 0;
+  }
+}

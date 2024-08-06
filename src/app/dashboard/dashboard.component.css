@@ -29,3 +29,17 @@
 .color-label-high-risk {
   color: #FF0000 !important;
 }
+.border-primary{
+  border: 1px solid #6FB6E5;
+  box-sizing: border-box;
+}
+.bg-response{
+  background: rgba(66, 123, 160, 0.05);
+  border-radius: 25px;
+  border: 1px solid rgba(66, 123, 160, 0.2);
+}
+.fixed-label{
+  position: absolute;
+  translate: transform(-50%, -50%);
+  top: 50%;
+}

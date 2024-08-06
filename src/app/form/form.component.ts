@@ -211,6 +211,7 @@ export class FormComponent implements OnInit {
   }
 
   onSubmit() {
+    this.proData.changeLoadingStatus(true);
     this.proData.formatData(this.formPersonalData.value, this.formWeightAndHabits.value, this.formRiskOfHospitalization.value);
   }
 }
