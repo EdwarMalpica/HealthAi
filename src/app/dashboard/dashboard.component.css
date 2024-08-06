@@ -17,3 +17,15 @@
 .knop-secondary:hover {
   background: linear-gradient(90deg, #427ba0 0%, #6fb6e5 100%);
 }
+
+.color-label-low-risk {
+  color: #427BA0 !important;
+}
+
+.color-label-medium-risk {
+  color: #FFA500 !important;
+}
+
+.color-label-high-risk {
+  color: #FF0000 !important;
+}

@@ -4,7 +4,7 @@
       <h2 class="text-2xl secondary-color font-semibold mb-4">Medical Check up</h2>
       <p class="secondary-color text-xs">Fill Out Our Form to Gain Valuable <br> Insights into Your Health</p>
       <div class="w-full h-full">
-        <p-stepper orientation="horizontal" [activeStep]="2">
+        <p-stepper orientation="horizontal">
           <p-stepperPanel header="">
             <ng-template pTemplate="content" let-nextCallback="nextCallback" let-index="index">
               <div class="flex flex-column h-12rem">
@@ -152,179 +152,158 @@
                   <p class="color-gradient-primary">
                     Please tell us about your medical history.
                   </p>
-                   <!--Do you currently have private health insurance? (Yes/No)-->
+                  <!--How would you rate your memory in general?	1: Excellent, 2: Very good, 3: Good, 4: Fair, 5: Poor-->
+                  <div class="flex flex-col w-10/12 gap-2">
+                    <label for="" class="color-gradient-primary text-xs">
+                      How would you rate your memory in general?
+                    </label>
+                    <p-selectButton [options]="optionsMemory" optionLabel="name" optionValue="value" formControlName="memory" />
+                  </div>
+                  <!--How is your memory compared to two years ago?	1: Better, 2: Same, 3: Worse, .d: Don't know, .m: Missing, .p: Proxy, .r: Refused-->
+                  <div class="flex flex-col w-10/12 gap-2">
+                    <label for="" class="color-gradient-primary text-xs">
+                      How is your memory compared to two years ago?
+                    </label>
+                    <p-selectButton [options]="optionsMemoryTwoYearsAgo" optionLabel="name" optionValue="value" formControlName="memoryTwoYearsAgo" />
+                  </div>
+                  <!--Have you ever been told you have high blood pressure?-->
                   <div class="flex flex-col w-7/12 gap-2">
                     <label for="" class="color-gradient-primary text-xs">
-                      Do you currently have private health insurance?
+                      Have you ever been told you have high blood pressure?
+                    </label>
+                    <p-selectButton [options]="optionsHighBloodPressure" optionLabel="name" optionValue="value" formControlName="highBloodPressure" />
+                  </div>
+                  <!--Have you ever been told you had a stroke?-->
+                  <div class="flex flex-col w-7/12 gap-2">
+                    <label for="" class="color-gradient-primary text-xs">
+                      Have you ever been told you had a stroke?
+                    </label>
+                    <p-selectButton [options]="optionsStroke" optionLabel="name" optionValue="value" formControlName="stroke" />
+                  </div>
+                  <!--Do you have private health insurance?-->
+                  <div class="flex flex-col w-7/12 gap-2">
+                    <label for="" class="color-gradient-primary text-xs">
+                      Do you have private health insurance?
                     </label>
                     <p-selectButton [options]="optionsPrivateHealthInsurance" optionLabel="name" optionValue="value" formControlName="privateHealthInsurance" />
                   </div>
-                  <!--What were your out-of-pocket medical expenses in the past year? int-->
+                  <!--How many of your siblings have died?-->
                   <div class="flex flex-col w-7/12 gap-2">
                     <label for="" class="color-gradient-primary text-xs">
-                      What were your out-of-pocket medical expenses in the past year?
+                      How many of your siblings have died?
                     </label>
-                    <input type="number" placeholder="Expenses" formControlName="outOfPocketMedicalExpenses">
+                    <input type="number" placeholder="Number" formControlName="siblingsDied">
                   </div>
-                  <!--Have you visited the doctor in the past year?(Yes/No)-->
+                  <!--How many of your siblings are alive?-->
                   <div class="flex flex-col w-7/12 gap-2">
                     <label for="" class="color-gradient-primary text-xs">
-                      Have you visited the doctor in the past year?
+                      How many of your siblings are alive?
                     </label>
-                    <p-selectButton [options]="optionsVisitedTheDoctorInLastYear" optionLabel="name" optionValue="value" formControlName="visitedTheDoctorInLastYear" />
+                    <input type="number" placeholder="Number" formControlName="siblingsAlive">
                   </div>
-                  <!--How often do you wake up during the night? (Rarely/Never, Sometimes, Often, Always)-->
-                  <div class="flex flex-col w-7/12 gap-2">
+                  <!--How often do you wake up at night?	1: Never, 2: Sometimes, 3: Frequently, 4: Very frequently-->
+                  <div class="flex flex-col w-10/12 gap-2">
                     <label for="" class="color-gradient-primary text-xs">
-                      How often do you wake up during the night?
+                      How often do you wake up at night?
                     </label>
-                    <p-selectButton [options]="optionsWakeUpDuringTheNight" optionLabel="name" optionValue="value" formControlName="OftenWakeUpDuringTheNight" />
+                    <p-selectButton [options]="optionsWakeUpAtNight" optionLabel="name" optionValue="value" formControlName="wakeUpAtNight" />
                   </div>
-                  <!--How many children have you ever given birth to or fathered?-->
+                  <!--How many alcoholic drinks do you consume per month?-->
                   <div class="flex flex-col w-7/12 gap-2">
                     <label for="" class="color-gradient-primary text-xs">
-                      How many children have you ever given birth to or fathered?
+                      How many alcoholic drinks do you consume per month?
                     </label>
-                    <input type="number" placeholder="Children" formControlName="howManyChildren">
+                    <input type="number" placeholder="Number" formControlName="alcoholicDrinks">
                   </div>
-                  <!--Have you ever experienced a stroke? (Yes/No)-->
+                  <!--Do you have any difficulty using the toilet?-->
                   <div class="flex flex-col w-7/12 gap-2">
                     <label for="" class="color-gradient-primary text-xs">
-                      Have you ever experienced a stroke?
+                      Do you have any difficulty using the toilet?
                     </label>
-                    <p-selectButton [options]="optionsStroke" optionLabel="name" optionValue="value" formControlName="everExperiencedStroke" />
+                    <p-selectButton [options]="optionsDifficultyUsingTheToilet" optionLabel="name" optionValue="value" formControlName="difficultyUsingTheToilet" />
                   </div>
-                  <!--How many of your siblings have passed away?-->
+                  <!--Do you have access to a flush toilet?-->
                   <div class="flex flex-col w-7/12 gap-2">
                     <label for="" class="color-gradient-primary text-xs">
-                      How many of your siblings have passed away?
+                      Do you have access to a flush toilet?
                     </label>
-                    <input type="number" placeholder="Siblings" formControlName="siblingsHavePassedAway">
+                    <p-selectButton [options]="optionsAccessToFlushToilet" optionLabel="name" optionValue="value" formControlName="accessToFlushToilet" />
                   </div>
-                  <!--What is your annual income from public retirement and widowhood pensions?-->
+                  <!--Do you have difficulty lifting heavy objects?-->
                   <div class="flex flex-col w-7/12 gap-2">
                     <label for="" class="color-gradient-primary text-xs">
-                      What is your annual income from public retirement and widowhood pensions?
+                      Do you have difficulty lifting heavy objects?
                     </label>
-                    <input type="number" placeholder="Income" formControlName="annualIncomeFromPublicRetirement">
+                    <p-selectButton [options]="optionsDifficultyLiftingHeavyObjects" optionLabel="name" optionValue="value" formControlName="difficultyLiftingHeavyObjects" />
                   </div>
-                  <!--What is your annual income from other pensions from public providers?-->
+                  <!--Do you have difficulty using a pencil or pen?-->
                   <div class="flex flex-col w-7/12 gap-2">
                     <label for="" class="color-gradient-primary text-xs">
-                      What is your annual income from other pensions from public providers?
+                      Do you have difficulty using a pencil or pen?
                     </label>
-                    <input type="number" placeholder="Income" formControlName="annualIncomeFromPrivateRetirement">
+                    <p-selectButton [options]="optionsDifficultyUsingPencilOrPen" optionLabel="name" optionValue="value" formControlName="difficultyUsingPencilOrPen" />
                   </div>
-                  <!--howManySiblingAreAlive-->
+                  <!--Can you walk 1 km?-->
                   <div class="flex flex-col w-7/12 gap-2">
                     <label for="" class="color-gradient-primary text-xs">
-                      How many of your siblings are currently living?
+                      Can you walk 1 km?
                     </label>
-                    <input type="number" placeholder="Siblings" formControlName="howManySiblingAreAlive">
+                    <p-selectButton [options]="optionsWalkOneKm" optionLabel="name" optionValue="value" formControlName="walkOneKm" />
                   </div>
-                  <!--Can you provide the total number of doctor visits you've had in the past year?-->
+                  <!--How much did you spend on dentist visits last year?-->
                   <div class="flex flex-col w-7/12 gap-2">
                     <label for="" class="color-gradient-primary text-xs">
-                      Can you provide the total number of doctor visits you've had in the past year?
+                      How much did you spend on dentist visits last year?
                     </label>
-                    <input type="number" placeholder="Visits" formControlName="numberOfDoctorsVisitedInLastYear">
+                    <input type="number" placeholder="Amount" formControlName="dentistVisits">
                   </div>
-                  <!--What is your total annual income from public pensions?-->
+                  <!--How much did you spend out-of-pocket on hospital visits last year?-->
                   <div class="flex flex-col w-7/12 gap-2">
                     <label for="" class="color-gradient-primary text-xs">
-                      What is your total annual income from public pensions?
+                      How much did you spend out-of-pocket on hospital visits last year?
                     </label>
-                    <input type="number" placeholder="Income" formControlName="annualIncomeFromPublicPension">
+                    <input type="number" placeholder="Amount" formControlName="hospitalVisits">
                   </div>
-                  <!--During the past year, how often did you care for a sick or disabled adult? (Never, Rarely, Sometimes, Often)-->
+                  <!--How many times did you visit the doctor in the last year?-->
                   <div class="flex flex-col w-7/12 gap-2">
                     <label for="" class="color-gradient-primary text-xs">
-                      During the past year, how often did you care for a sick or disabled adult?
+                      How many times did you visit the doctor in the last year?
                     </label>
-                    <p-selectButton [options]="optionsCareForSickOrDisabledAdult" optionLabel="name" optionValue="value" formControlName="oftenCareSickDuringTheLastYear" />
+                    <input type="number" placeholder="Number" formControlName="doctorVisits">
                   </div>
-                  <!--Do you engage in walking as a form of exercise? (Yes/No)-->
+                  <!--How much did you spend on medications last year?-->
                   <div class="flex flex-col w-7/12 gap-2">
                     <label for="" class="color-gradient-primary text-xs">
-                      Do you engage in walking as a form of exercise?
+                      How much did you spend on medications last year?
                     </label>
-                    <p-selectButton [options]="optionsWalking" optionLabel="name" optionValue="value" formControlName="youEngageInPhysicalActivity" />
+                    <input type="number" placeholder="Amount" formControlName="medications">
                   </div>
-                  <!--What is your annual income from private pensions?-->
+                  <!--Are you retired?-->
                   <div class="flex flex-col w-7/12 gap-2">
                     <label for="" class="color-gradient-primary text-xs">
-                      What is your annual income from private pensions?
+                      Are you retired?
                     </label>
-                    <input type="number" placeholder="Income" formControlName="annualIncomeFromPrivatePension">
+                    <p-selectButton [options]="optionsRetired" optionLabel="name" optionValue="value" formControlName="retired" />
                   </div>
-                  <!--How many words can you recall from a memory test conducted earlier?-->
+                  <!--Do you receive a pension?-->
                   <div class="flex flex-col w-7/12 gap-2">
                     <label for="" class="color-gradient-primary text-xs">
-                      How many words can you recall from a memory test conducted earlier?
+                      Do you receive a pension?
                     </label>
-                    <input type="number" placeholder="Words" formControlName="howManyWordsCanYouRecall">
+                    <p-selectButton [options]="optionsPension" optionLabel="name" optionValue="value" formControlName="pension" />
                   </div>
-                  <!--Are you covered by any government health insurance program? (Yes/No)-->
+                  <!--What is the total monthly household expenditure?-->
                   <div class="flex flex-col w-7/12 gap-2">
                     <label for="" class="color-gradient-primary text-xs">
-                      Are you covered by any government health insurance program?
+                      What is the total monthly household expenditure?
                     </label>
-                    <p-selectButton [options]="optionsGovernmentHealthInsurance" optionLabel="name" optionValue="value" formControlName="coveredByGovernmentHealthInsurance" />
-                  </div>
-                  <!--What is your annual income from other pensions?-->
-                  <div class="flex flex-col w-7/12 gap-2">
-                    <label for="" class="color-gradient-primary text-xs">
-                      What is your annual income from other pensions?
-                    </label>
-                    <input type="number" placeholder="Income" formControlName="annualIncomeFromOthersPension">
-                  </div>
-                  <!--Do you often feel that everything is an effort? (Yes/No)-->
-                  <div class="flex flex-col w-7/12 gap-2">
-                    <label for="" class="color-gradient-primary text-xs">
-                      Do you often feel that everything is an effort?
-                    </label>
-                    <p-selectButton [options]="optionsFeelThatEverythingIsAnEffort" optionLabel="name" optionValue="value" formControlName="oftenFeelThatEverythingIsAnEffort" />
-                  </div>
-                  <!--Do you experience difficulty with at least one health condition or activity? (Yes/No)-->
-                  <div class="flex flex-col w-7/12 gap-2">
-                    <label for="" class="color-gradient-primary text-xs">
-                      Do you experience difficulty with at least one health condition or activity?
-                    </label>
-                    <p-selectButton [options]="optionsExperienceDifficulty" optionLabel="name" optionValue="value" formControlName="experienceDifficultiesWithAtLeasOneHealthProblem" />
-                  </div>
-                  <!--Are you currently considered part of the labor force? (Yes/No)-->
-                  <div class="flex flex-col w-7/12 gap-2">
-                    <label for="" class="color-gradient-primary text-xs">
-                      Are you currently considered part of the labor force?
-                    </label>
-                    <p-selectButton [options]="optionsLaborForce" optionLabel="name" optionValue="value" formControlName="currentlyConsideredPartOfTheLaborForce" />
-                  </div>
-                  <!--walkin, climbing stairs, geting up from a chair, stooping, kneeling, crouching,reaching or extending arms above shoulder level-->
-                  <div class="flex flex-col w-7/12 gap-2">
-                    <label for="" class="color-gradient-primary text-xs">
-                      How often do you have difficulty walking, climbing stairs, getting up from a chair, stooping, kneeling, crouching, reaching or extending your arms above shoulder level?
-                    </label>
-                    <p-selectButton [options]="optionsDifficultyWalking" optionLabel="name" optionValue="value" formControlName="walkingClimbingStairs" />
-                  </div>
-                  <!--Are you the policyholder?-->
-                  <div class="flex flex-col w-7/12 gap-2">
-                    <label for="" class="color-gradient-primary text-xs">
-                      Are you the policyholder?
-                    </label>
-                    <p-selectButton [options]="optionsPolicyholder" optionLabel="name" optionValue="value" formControlName="policyholder" />
-                  </div>
-                  <!--Have there been changes in the composition of your family group such as divorce/separation, death, or new spouse? (Yes/No)-->
-                  <div class="flex flex-col w-7/12 gap-2">
-                    <label for="" class="color-gradient-primary text-xs">
-                      Have there been changes in the composition of your family group such as divorce/separation, death, or new spouse?
-                    </label>
-                    <p-selectButton [options]="optionsChangesInFamilyGroup" optionLabel="name" optionValue="value" formControlName="changesInTheCompositionOfTheFamily" />
+                    <input type="number" placeholder="Amount" formControlName="householdExpenditure">
                   </div>
                 </form>
               </div>
               <div class="flex py-4 gap-2">
                 <p-button label="Back" (onClick)="prevCallback.emit()" />
-                <p-button label="Get results" [disabled]="!(isCompletedFormRiskOfHospitalization|async)" />
+                <p-button label="Get results" (onClick)="onSubmit()"  [disabled]="!(isCompletedFormRiskOfHospitalization|async)" />
               </div>
             </ng-template>
           </p-stepperPanel>

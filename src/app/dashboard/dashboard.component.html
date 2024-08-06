@@ -3,12 +3,31 @@
     <div class="flex w-full gap-5 p-10">
       <div class="w-6/12 knop-secondary rounded-3xl p-4">
         <h4 class="text-xl font-semibold">Hospitalization Risk</h4>
-        <div class="w-full h-full flex items-center justify-center">
-        <p-knob  [size]="300" valueColor="white" textColor="white" valueTemplate="{value}%" />
+        <div class="w-full h-full flex items-center justify-center flex-col gap-5">
+          <p-knob [size]="300" [(ngModel)]="riskHospitalization" valueColor="white" textColor="white"
+            valueTemplate="{value}%" />
+          <label class="text-xl font-semibold mb-10 bg-white p-2 rounded-3xl px-10" [ngClass]="{
+            'color-label-low-risk':riskLabelColor.low,
+            'color-label-medium-risk':riskLabelColor.moderate,
+            'color-label-high-risk':riskLabelColor.high
+          }" for="">
+            {{getLabelRiskHospitalization()}}
+          </label>
         </div>
       </div>
       <div class="w-6/12 knop-primary rounded-3xl p-4">
-        <h4 class="text-xl font-semibold">Sleep Index</h4>
+        <h4 class="text-xl font-semibold">Sleep index</h4>
+        <div class="w-full h-full flex items-center justify-center flex-col gap-5">
+          <p-knob [size]="300" [(ngModel)]="sleepIndex" [max]="12" valueColor="white" textColor="white"
+            valueTemplate="{value}" />
+          <label class="text-xl font-semibold mb-10 bg-white p-2 rounded-3xl px-10" [ngClass]="{
+                    'color-label-low-risk':riskLabelColor.low,
+                    'color-label-medium-risk':riskLabelColor.moderate,
+                    'color-label-high-risk':riskLabelColor.high
+                  }" for="">
+            {{getLabelSleepIndex()}}
+          </label>
+        </div>
       </div>
     </div>
   </div>

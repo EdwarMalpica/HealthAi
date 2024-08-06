@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import { SelectButtonModule } from 'primeng/selectbutton';
+import { ProcessDataService } from '../core/process-data.service';
 @Component({
   selector: 'app-form',
   standalone: true,
@@ -57,84 +58,68 @@ export class FormComponent implements OnInit {
     { name: 'Yes', value: 'Yes' },
     { name: 'No', value: 'No' },
   ];
-
-  optionsPrivateHealthInsurance = [
-    { name: 'Yes', value: 'Yes' },
-    { name: 'No', value: 'No' },
+  //1: Excellent, 2: Very good, 3: Good, 4: Fair, 5: Poor,
+  optionsMemory = [
+    { name: 'Excellent', value: '1.Excellent' },
+    { name: 'Very good', value: '2.Very good' },
+    { name: 'Good', value: '3.Good' },
+    { name: 'Fair', value: '4.Fair' },
+    { name: 'Poor', value: '5.Poor' },
   ];
 
-  optionsVisitedTheDoctorInLastYear = [
-    { name: 'Yes', value: 'Yes' },
-    { name: 'No', value: 'No' },
+  optionsMemoryTwoYearsAgo = [
+    { name: 'Excellent', value: '1.Excellent' },
+    { name: 'Very good', value: '2.Very good' },
+    { name: 'Good', value: '3.Good' },
+    { name: 'Fair', value: '4.Fair' },
+    { name: 'Poor', value: '5.Poor' },
   ];
-  optionsWakeUpDuringTheNight = [
-    { name: 'Never', value: 'Never' },
-    { name: 'Rarely', value: 'Rarely' },
-    { name: 'Sometimes', value: 'Sometimes' },
-    { name: 'Always', value: 'Always' },
+  optionsHighBloodPressure = [
+    { name: 'Yes', value: '1.Yes' },
+    { name: 'No', value: '0.No' },
   ];
-
   optionsStroke = [
-    { name: 'Yes', value: 'Yes' },
-    { name: 'No', value: 'No' },
+    { name: 'Yes', value: '1.Yes' },
+    { name: 'No', value: '0.No' },
   ];
-  /*1.Almost every day
-2.4 or more times a week
-3.2 or 3 times a week
-4.Once a week
-5.4 or more times a month
-6.2 or 3 times a month
-7.Once a month
-8.Almost Never, sporadic
-9.Never*/
-
-  optionsCareForSickOrDisabledAdult = [
-    { name: 'Almost every day', value: 'Almost every day' },
-    { name: '4 or more times a week', value: '4 or more times a week' },
-    { name: '2 or 3 times a week', value: '2 or 3 times a week' },
-    { name: 'Once a week', value: 'Once a week' },
-    { name: '4 or more times a month', value: '4 or more times a month' },
-    { name: '2 or 3 times a month', value: '2 or 3 times a month' },
-    { name: 'Once a month', value: 'Once a month' },
-    { name: 'Almost Never, sporadic', value: 'Almost Never, sporadic' },
-    { name: 'Never', value: 'Never' },
+  optionsPrivateHealthInsurance = [
+    { name: 'Yes', value: '1.Yes' },
+    { name: 'No', value: '0.No' },
   ];
-
-  optionsWalking = [
-    { name: 'Yes', value: 'Yes' },
-    { name: 'No', value: 'No' },
+  // 1: Never, 2: Sometimes, 3: Frequently, 4: Very frequently
+  optionsWakeUpAtNight = [
+    { name: 'Never', value: '1.Never' },
+    { name: 'Sometimes', value: '2.Sometimes' },
+    { name: 'Frequently', value: '3.Frequently' },
+    { name: 'Very frequently', value: '4.Very frequently' },
   ];
-  optionsGovernmentHealthInsurance = [
-    { name: 'Yes', value: 'Yes' },
-    { name: 'No', value: 'No' },
+  optionsDifficultyUsingTheToilet = [
+    { name: 'Yes', value: '1.Yes' },
+    { name: 'No', value: '0.No' },
   ];
-  optionsFeelThatEverythingIsAnEffort = [
+  optionsAccessToFlushToilet = [
     { name: 'Yes', value: 'Yes' },
-    { name: 'No', value: 'No' },
+    { name: 'No', value: '0.No' },
   ];
-  optionsExperienceDifficulty = [
-    { name: 'Yes', value: 'Yes' },
-    { name: 'No', value: 'No' },
+  optionsDifficultyLiftingHeavyObjects = [
+    { name: 'Yes', value: '1.Yes' },
+    { name: 'No', value: '0.No' },
   ];
-
-  optionsLaborForce = [
-    { name: 'Yes', value: 'Yes' },
-    { name: 'No', value: 'No' },
+  optionsDifficultyUsingPencilOrPen = [
+    { name: 'Yes', value: '1.Yes' },
+    { name: 'No', value: '0.No' },
   ];
-
-  optionsDifficultyWalking = [
-    { name: 'Yes', value: 'Yes' },
-    { name: 'No', value: 'No' },
+  optionsWalkOneKm = [
+    { name: 'Yes', value: '1.Yes' },
+    { name: 'No', value: '0.No' },
   ];
-
-  optionsPolicyholder = [
-    { name: 'Yes', value: 'Yes' },
-    { name: 'No', value: 'No' },
+  optionsRetired = [
+    { name: 'Yes', value: '1.Yes' },
+    { name: 'No', value: '0.No' },
   ];
-
-  optionsChangesInFamilyGroup = [
-    { name: 'Yes', value: 'Yes' },
-    { name: 'No', value: 'No' },
+  optionsPension = [
+    { name: 'Yes', value: '1.Yes' },
+    { name: 'No', value: '0.No' },
   ];
 
   formPersonalData: FormGroup;
@@ -144,7 +129,9 @@ export class FormComponent implements OnInit {
   isCompletedFormWeightAndHabits: Observable<boolean>;
   isCompletedFormRiskOfHospitalization: Observable<boolean>;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder,
+    private proData:ProcessDataService
+  ) {}
   ngOnInit(): void {
     this.isCompletedFormPersonalData = new Observable<boolean>();
     this.isCompletedFormWeightAndHabits = new Observable<boolean>();
@@ -189,47 +176,41 @@ export class FormComponent implements OnInit {
       }
     });
     this.formRiskOfHospitalization = this.formBuilder.group({
+      memory: ['', Validators.required],
+      memoryTwoYearsAgo: ['', Validators.required],
+      highBloodPressure: ['', Validators.required],
+      stroke: ['', Validators.required],
       privateHealthInsurance: ['', Validators.required],
-      outOfPocketMedicalExpenses: ['', Validators.required],
-      visitedTheDoctorInLastYear: ['', Validators.required],
-      OftenWakeUpDuringTheNight: ['', Validators.required],
-      howManyChildren: ['', Validators.required],
-      everExperiencedStroke: ['', Validators.required],
-      siblingsHavePassedAway: ['', Validators.required],
-      annualIncomeFromPublicRetirement: ['', Validators.required],
-      annualIncomeFromPrivateRetirement: ['', Validators.required],
-      howManySiblingAreAlive: ['', Validators.required],
-      numberOfDoctorsVisitedInLastYear: ['', Validators.required],
-      annualIncomeFromPublicPension: ['', Validators.required],
-      oftenCareSickDuringTheLastYear: ['', Validators.required],
-      youEngageInPhysicalActivity: ['', Validators.required],
-      annualIncomeFromPrivatePension: ['', Validators.required],
-      howManyWordsCanYouRecall: ['', Validators.required],
-      coveredByGovernmentHealthInsurance: ['', Validators.required],
-      annualIncomeFromOthersPension: ['', Validators.required],
-      oftenFeelThatEverythingIsAnEffort: ['', Validators.required],
-      experienceDifficultiesWithAtLeasOneHealthProblem: [
-        '',
-        Validators.required,
-      ],
-      currentlyConsideredPartOfTheLaborForce: ['', Validators.required],
-      walkingClimbingStairs: ['', Validators.required],
-      policyholder: ['', Validators.required],
-      changesInTheCompositionOfTheFamily: ['', Validators.required],
+      siblingsDied: ['', Validators.required],
+      siblingsAlive: ['', Validators.required],
+      wakeUpAtNight: ['', Validators.required],
+      alcoholicDrinks: ['', Validators.required],
+      difficultyUsingTheToilet: ['', Validators.required],
+      accessToFlushToilet: ['', Validators.required],
+      difficultyLiftingHeavyObjects: ['', Validators.required],
+      difficultyUsingPencilOrPen: ['', Validators.required],
+      walkOneKm: ['', Validators.required],
+      dentistVisits: ['', Validators.required],
+      hospitalVisits: ['', Validators.required],
+      doctorVisits: ['', Validators.required],
+      medications: ['', Validators.required],
+      retired: ['', Validators.required],
+      pension: ['', Validators.required],
+      householdExpenditure: ['', Validators.required],
     });
     this.formRiskOfHospitalization.valueChanges.subscribe((value) => {
       if (this.formRiskOfHospitalization.valid) {
+          console.log('isvalid');
         this.isCompletedFormRiskOfHospitalization = new Observable<boolean>(
           (observer) => {
             observer.next(true);
           }
         );
       }
-    }
-    );
+    });
   }
 
   onSubmit() {
-    console.log(this.formPersonalData.value);
+    this.proData.formatData(this.formPersonalData.value, this.formWeightAndHabits.value, this.formRiskOfHospitalization.value);
   }
 }
