@@ -146,6 +146,12 @@ hh4ctot1m
 
   indexCalculation: Subject<indexCalculation>;
 
+  indexCals:indexCalculation = {
+    sleepIndex: 0,
+    IMCIndex: 0,
+    fruitsIndex: 0,
+  };
+
   isLoading: Subject<boolean>;
 
   constructor(private http: HttpClient, private router: Router) {
@@ -300,6 +306,12 @@ hh4ctot1m
       IMCIndex: IMC,
       fruitsIndex: fruitsIndex,
     });
+
+    this.indexCals = {
+      sleepIndex: sleepIndex,
+      IMCIndex: Math.round(IMC),
+      fruitsIndex: fruitsIndex,
+    };
     this.gotoDashboard();
   }
 

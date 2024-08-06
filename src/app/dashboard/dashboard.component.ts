@@ -18,10 +18,10 @@ import { ProcessDataService } from '../core/process-data.service';
   styleUrl: './dashboard.component.css',
 })
 export class DashboardComponent implements AfterViewInit, OnInit {
-  riskHospitalization = 0;
-  sleepIndex = 0;
-  fruitsAndVegetablesIndex = 0;
-  imc: number = 0;
+  riskHospitalization: any;
+  sleepIndex: any;
+  fruitsAndVegetablesIndex: any;
+  imc: number ;
   dataIMC: any;
   optionsIMC: any;
 
@@ -45,22 +45,20 @@ export class DashboardComponent implements AfterViewInit, OnInit {
     },
   };
 
-  constructor(
-    private cdr: ChangeDetectorRef,
-    private prd: ProcessDataService
-  ) {
-    this.prd.indexCalculation.asObservable().subscribe((value) => {
-      this.sleepIndex = value.sleepIndex;
-      this.fruitsAndVegetablesIndex = value.fruitsIndex;
-      this.imc = value.IMCIndex;
-      this.refreshDataIMC();
-      this.cdr.detectChanges();
-      console.log('El perro hpta imc' + this.imc);
-    });
+  constructor(private cdr: ChangeDetectorRef, private prd: ProcessDataService) {
+    // this.prd.indexCalculation.asObservable().subscribe((value) => {
+    //   this.sleepIndex = value.sleepIndex;
+    //   this.fruitsAndVegetablesIndex = value.fruitsIndex;
+    //   this.imc = value.IMCIndex;
+    //   this.refreshDataIMC();
+    //   this.cdr.detectChanges();
+    //   console.log('El perro hpta imc' + this.imc);
+    // });
+    this.imc = this.prd.indexCals.IMCIndex;
+    this.sleepIndex = this.prd.indexCals.sleepIndex;
+    this.fruitsAndVegetablesIndex = this.prd.indexCals.fruitsIndex;
   }
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   ngAfterViewInit(): void {
     this.dataIMC = {
