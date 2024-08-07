@@ -51,7 +51,10 @@ export class DashboardComponent implements AfterViewInit, OnInit {
     this.fruitsAndVegetablesIndex = this.prd.indexCals.fruitsIndex;
     this.riskHospitalization = this.prd.indexCals.riskOfHospitalizationIndex;
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    window.scrollTo(0, 0);
+
+  }
 
   ngAfterViewInit(): void {
     this.dataIMC = {
