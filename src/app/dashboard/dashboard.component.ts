@@ -46,17 +46,10 @@ export class DashboardComponent implements AfterViewInit, OnInit {
   };
 
   constructor(private cdr: ChangeDetectorRef, private prd: ProcessDataService) {
-    // this.prd.indexCalculation.asObservable().subscribe((value) => {
-    //   this.sleepIndex = value.sleepIndex;
-    //   this.fruitsAndVegetablesIndex = value.fruitsIndex;
-    //   this.imc = value.IMCIndex;
-    //   this.refreshDataIMC();
-    //   this.cdr.detectChanges();
-    //   console.log('El perro hpta imc' + this.imc);
-    // });
     this.imc = this.prd.indexCals.IMCIndex;
     this.sleepIndex = this.prd.indexCals.sleepIndex;
     this.fruitsAndVegetablesIndex = this.prd.indexCals.fruitsIndex;
+    this.riskHospitalization = this.prd.indexCals.riskOfHospitalizationIndex;
   }
   ngOnInit(): void {}
 
@@ -165,6 +158,7 @@ export class DashboardComponent implements AfterViewInit, OnInit {
       return 'Obesity';
     }
   }
+
 
   getRecommendationIMC() {
     if (this.imc < 16) {

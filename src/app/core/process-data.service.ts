@@ -56,6 +56,7 @@ interface DataFormPersonalData {
 
 // index of sleep, index of IMC. index of vegetables and fruits
 interface indexCalculation {
+  riskOfHospitalizationIndex: number;
   sleepIndex: number;
   IMCIndex: number;
   fruitsIndex: number;
@@ -147,6 +148,7 @@ hh4ctot1m
   indexCalculation: Subject<indexCalculation>;
 
   indexCals:indexCalculation = {
+    riskOfHospitalizationIndex: 0,
     sleepIndex: 0,
     IMCIndex: 0,
     fruitsIndex: 0,
@@ -177,7 +179,7 @@ hh4ctot1m
     this.dataFormRiskOfHospitalization.r5stroke =
       formRiskOfHospitalization.stroke;
     this.dataFormRiskOfHospitalization.r5hipriv =
-      formWeightAndHabits.privateHealthInsurance;
+      formRiskOfHospitalization.privateHealthInsurance;
     this.dataFormRiskOfHospitalization.r5decsib =
       formRiskOfHospitalization.siblingsDied;
     this.dataFormRiskOfHospitalization.r5livsib =
@@ -263,8 +265,8 @@ hh4ctot1m
 
   postData(data: any) {
     return this.http.post(`${this.apiUrl}/`, data).subscribe({
-      next: (data) => {
-        console.log(data);
+      next: (data:any) => {
+        this.indexCals.riskOfHospitalizationIndex = data.Result;
       },
       error: (error) => {
         console.error(error);
@@ -302,12 +304,14 @@ hh4ctot1m
 
 
     this.indexCalculation.next({
+      riskOfHospitalizationIndex: 0,
       sleepIndex: sleepIndex,
       IMCIndex: IMC,
       fruitsIndex: fruitsIndex,
     });
 
     this.indexCals = {
+      riskOfHospitalizationIndex: 0,
       sleepIndex: sleepIndex,
       IMCIndex: Math.round(IMC),
       fruitsIndex: fruitsIndex,
