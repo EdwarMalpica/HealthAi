@@ -282,16 +282,16 @@
                   <!--Are you retired?-->
                   <div class="flex flex-col w-7/12 gap-2">
                     <label for="" class="color-gradient-primary text-xs">
-                      Are you retired?
+                      What is the total amount of income you receive from public old-age or survivor pensions?
                     </label>
-                    <p-selectButton [options]="optionsRetired" optionLabel="name" optionValue="value" formControlName="retired" />
+                    <input type="number" placeholder="Amount" formControlName="retired">
                   </div>
                   <!--Do you receive a pension?-->
                   <div class="flex flex-col w-7/12 gap-2">
                     <label for="" class="color-gradient-primary text-xs">
-                      Do you receive a pension?
+                      What is the total amount of income you receive from pensions and annuities?
                     </label>
-                    <p-selectButton [options]="optionsPension" optionLabel="name" optionValue="value" formControlName="pension" />
+                    <input type="number" placeholder="Amount" formControlName="pension">
                   </div>
                   <!--What is the total monthly household expenditure?-->
                   <div class="flex flex-col w-7/12 gap-2">

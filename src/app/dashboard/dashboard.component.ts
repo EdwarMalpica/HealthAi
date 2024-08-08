@@ -21,9 +21,10 @@ export class DashboardComponent implements AfterViewInit, OnInit {
   riskHospitalization: any;
   sleepIndex: any;
   fruitsAndVegetablesIndex: any;
-  imc: number ;
+  imc: number;
   dataIMC: any;
   optionsIMC: any;
+  namePerson = 'John Doe';
 
   centerTitlePlugin = {
     id: 'centerTitlePlugin',
@@ -50,13 +51,21 @@ export class DashboardComponent implements AfterViewInit, OnInit {
     this.sleepIndex = this.prd.indexCals.sleepIndex;
     this.fruitsAndVegetablesIndex = this.prd.indexCals.fruitsIndex;
     this.riskHospitalization = this.prd.indexCals.riskOfHospitalizationIndex;
+    if (
+      this.prd.dataFormPersonalData.name !== '' &&
+      this.prd.dataFormPersonalData.lastName !== ''
+    )
+      this.namePerson =
+        this.prd.dataFormPersonalData.name +
+        ' ' +
+        this.prd.dataFormPersonalData.lastName;
   }
-  ngOnInit(): void {
-    window.scrollTo(0, 0);
-
-  }
+  ngOnInit(): void {}
 
   ngAfterViewInit(): void {
+    if (typeof window !== 'undefined') {
+      window.scrollTo(0, 0);
+    }
     this.dataIMC = {
       datasets: [
         {
@@ -88,7 +97,7 @@ export class DashboardComponent implements AfterViewInit, OnInit {
         },
         title: {
           display: true,
-          text: 'IMC',
+          text: 'BMC',
           font: {
             size: 20,
           },
@@ -161,7 +170,6 @@ export class DashboardComponent implements AfterViewInit, OnInit {
       return 'Obesity';
     }
   }
-
 
   getRecommendationIMC() {
     if (this.imc < 16) {
@@ -260,6 +268,57 @@ export class DashboardComponent implements AfterViewInit, OnInit {
           <li><strong>Diet:</strong> A medically supervised diet plan is crucial. Focus on reducing calorie intake and ensuring nutritional balance.</li>
           <li><strong>Exercise:</strong> Start with low-impact, supervised physical activities. Physical therapy may be beneficial to help you get started safely.</li>
           <li><strong>Health Check:</strong> Frequent medical evaluations are necessary. Discuss with your healthcare provider the possibility of bariatric surgery and other intensive weight loss interventions.</li>
+        </ul>
+      </div>
+    `;
+    }
+  }
+  getValorizationRiskHospitalization() {
+    if (this.riskHospitalization < 33) {
+      return 'Low';
+    } else if (
+      this.riskHospitalization >= 33 &&
+      this.riskHospitalization < 70
+    ) {
+      return 'Moderate';
+    } else {
+      return 'High';
+    }
+  }
+  getRecommendationRiskHospitalization() {
+    if (this.riskHospitalization < 33) {
+      return `
+      <div>
+        <p>Your risk of hospitalization is low. This is a positive indicator of your overall health and well-being.</p>
+        <ul>
+          <li><strong>Preventive Care:</strong> Continue with regular health check-ups and screenings to maintain your current health status.</li>
+          <li><strong>Lifestyle Habits:</strong> Maintain a balanced diet, regular exercise routine, and adequate sleep to support your immune system.</li>
+          <li><strong>Health Awareness:</strong> Stay informed about potential health risks and seek medical advice if you experience any concerning symptoms.</li>
+        </ul>
+      </div>
+    `;
+    } else if (
+      this.riskHospitalization >= 33 &&
+      this.riskHospitalization < 70
+    ) {
+      return `
+      <div>
+        <p>Your risk of hospitalization is moderate. While this may not be an immediate concern, it's important to monitor your health and lifestyle habits.</p>
+        <ul>
+          <li><strong>Preventive Care:</strong> Regular health check-ups and screenings can help detect and manage potential health issues early.</li>
+          <li><strong>Lifestyle Habits:</strong> Focus on maintaining a healthy diet, regular exercise routine, and stress management techniques to support your overall well-being.</li>
+          <li><strong>Health Awareness:</strong> Be proactive in seeking medical advice and addressing any health concerns promptly.</li>
+        </ul>
+      </div>
+    `;
+    } else {
+      return `
+      <div>
+        <p>Your risk of hospitalization is high. This indicates a significant health concern that requires immediate attention and intervention.</p>
+        <ul>
+          <li><strong>Medical Consultation:</strong> Seek medical advice from a healthcare provider to assess your current health status and determine appropriate treatment options.</li>
+          <li><strong>Lifestyle Changes:</strong> Focus on improving your diet, physical activity, and stress management to reduce your risk of hospitalization.</li>
+          <li><strong>Health Monitoring:</strong> Regular health check-ups and monitoring are essential to manage and address potential health issues.</li>
         </ul>
       </div>
     `;
