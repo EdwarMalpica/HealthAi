@@ -275,9 +275,9 @@
                   <!--How much did you spend on medications last year?-->
                   <div class="flex flex-col w-7/12 gap-2">
                     <label for="" class="color-gradient-primary text-xs">
-                      How much did you spend on medications last year?
+                      Did you take medications last year?
                     </label>
-                    <input type="number" placeholder="Amount" formControlName="medications">
+                    <p-selectButton [options]="optionsMedications" optionLabel="name" optionValue="value" formControlName="medications" />
                   </div>
                   <!--Are you retired?-->
                   <div class="flex flex-col w-7/12 gap-2">

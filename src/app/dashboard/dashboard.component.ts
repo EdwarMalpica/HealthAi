@@ -50,7 +50,7 @@ export class DashboardComponent implements AfterViewInit, OnInit {
     this.imc = this.prd.indexCals.IMCIndex;
     this.sleepIndex = this.prd.indexCals.sleepIndex;
     this.fruitsAndVegetablesIndex = this.prd.indexCals.fruitsIndex;
-    this.riskHospitalization = this.prd.indexCals.riskOfHospitalizationIndex;
+    this.riskHospitalization = (parseFloat(this.prd.indexCals.riskOfHospitalizationIndex.toFixed(2)))*100;
     if (
       this.prd.dataFormPersonalData.name !== '' &&
       this.prd.dataFormPersonalData.lastName !== ''
