@@ -98,7 +98,7 @@ export class FormComponent implements OnInit {
     { name: 'No', value: '0.No' },
   ];
   optionsAccessToFlushToilet = [
-    { name: 'Yes', value: 'Yes' },
+    { name: 'Yes', value: '1.Yes' },
     { name: 'No', value: '0.No' },
   ];
   optionsDifficultyLiftingHeavyObjects = [
@@ -118,6 +118,10 @@ export class FormComponent implements OnInit {
     { name: 'No', value: '0.No' },
   ];
   optionsPension = [
+    { name: 'Yes', value: '1.Yes' },
+    { name: 'No', value: '0.No' },
+  ];
+  optionsMedications = [
     { name: 'Yes', value: '1.Yes' },
     { name: 'No', value: '0.No' },
   ];
@@ -200,7 +204,6 @@ export class FormComponent implements OnInit {
     });
     this.formRiskOfHospitalization.valueChanges.subscribe((value) => {
       if (this.formRiskOfHospitalization.valid) {
-          console.log('isvalid');
         this.isCompletedFormRiskOfHospitalization = new Observable<boolean>(
           (observer) => {
             observer.next(true);

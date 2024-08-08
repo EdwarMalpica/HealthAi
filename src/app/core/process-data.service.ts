@@ -239,10 +239,8 @@ hh4ctot1m
     this.dataFormPersonalData.birthDate = formPersonalData.birthDate;
     this.dataFormPersonalData.gender = formPersonalData.gender;
 
-    this.processAndCalculateData();
     this.postData(this.dataFormRiskOfHospitalization);
-
-    timer(10000).subscribe(() => {
+    timer(5000).subscribe(() => {
        this.changeLoadingStatus(false);
      });
   }
@@ -267,6 +265,7 @@ hh4ctot1m
     return this.http.post(`${this.apiUrl}/`, data).subscribe({
       next: (data:any) => {
         this.indexCals.riskOfHospitalizationIndex = data.Result;
+        this.processAndCalculateData();
       },
       error: (error) => {
         console.error(error);
@@ -311,7 +310,7 @@ hh4ctot1m
     });
 
     this.indexCals = {
-      riskOfHospitalizationIndex: 0,
+      riskOfHospitalizationIndex: this.indexCals.riskOfHospitalizationIndex,
       sleepIndex: sleepIndex,
       IMCIndex: Math.round(IMC),
       fruitsIndex: fruitsIndex,
