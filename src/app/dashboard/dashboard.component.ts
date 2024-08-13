@@ -50,7 +50,7 @@ export class DashboardComponent implements AfterViewInit, OnInit {
     this.imc = this.prd.indexCals.IMCIndex;
     this.sleepIndex = this.prd.indexCals.sleepIndex;
     this.fruitsAndVegetablesIndex = this.prd.indexCals.fruitsIndex;
-    this.riskHospitalization = (parseFloat(this.prd.indexCals.riskOfHospitalizationIndex.toFixed(2)))*100;
+    
     if (
       this.prd.dataFormPersonalData.name !== '' &&
       this.prd.dataFormPersonalData.lastName !== ''
@@ -124,6 +124,9 @@ export class DashboardComponent implements AfterViewInit, OnInit {
   };
 
   getLabelRiskHospitalization() {
+    this.riskHospitalization = this.prd.indexCals.riskOfHospitalizationIndex * 100;
+    this.riskHospitalization = Math.ceil(this.riskHospitalization);
+    
     if (this.riskHospitalization < 33) {
       return 'You are at low risk of hospitalization';
     } else if (
