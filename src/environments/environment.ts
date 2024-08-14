@@ -1,3 +1,3 @@
 export const environment = {
-  API_URL: 'http://localhost',
+  API_URL: 'https://healthaibackend-am12.onrender.com',
 };
